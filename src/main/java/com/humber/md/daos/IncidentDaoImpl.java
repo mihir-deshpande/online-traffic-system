@@ -32,4 +32,12 @@ public class IncidentDaoImpl implements IncidentDao{
             query.setParameter("officer", officer);
             return query.getResultList();
         }
+
+        @Override
+        @Transactional
+        public void deleteById(int id) {
+            Incident incident = entityManager.find(Incident.class, id);
+            entityManager.remove(incident);
+        }
+
 }

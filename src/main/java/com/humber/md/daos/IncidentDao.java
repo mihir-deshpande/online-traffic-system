@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface IncidentDao {
 
-    public Incident save(Incident incident);
+    Incident save(Incident incident);
 
-    public List<Incident> getIncidentsByOfficerId(Officer officer);
+    List<Incident> getIncidentsByOfficerId(Officer officer);
+
+    void deleteById(int id);
 
 }

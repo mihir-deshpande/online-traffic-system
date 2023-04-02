@@ -11,10 +11,7 @@ import com.humber.md.models.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -97,5 +94,40 @@ public class IncidentController {
         }
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/incident/delete/{id}", method = RequestMethod.GET)
+    public String deleteIncident(@PathVariable("id") int id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if(session.getAttribute("loggedinOfficer") != null) {
+            incidentDao.deleteById(id);
+            return "redirect:/incident/incidents";
+        }
+        return "redirect:/";
+    }
+
+    /*
+
+    @GetMapping("/incident/edit/{id}")
+    public String editIncident(@PathVariable("id") int id, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if(session.getAttribute("loggedinOfficer") != null) {
+            // Get all vehicles and routes
+            List<Vehicle> vehicles = vehicleDao.findAll();
+            List<Route> routes = routeDao.findAll();
+
+            model.addAttribute("vehicles", vehicles);
+            model.addAttribute("routes", routes);
+
+            Incident incident = incidentDao.getIncidentById(id);
+            model.addAttribute("incident", incident);
+
+            return "incident/edit";
+        }
+        return "redirect:/";
+    }
+
+     */
 
 }
