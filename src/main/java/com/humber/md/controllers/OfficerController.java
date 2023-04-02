@@ -1,6 +1,6 @@
 /**
+ * Controller to handel all the routes related to Officer
  * @author  Mihir
- * @description Controller to handel all the routes related to Officer
  */
 package com.humber.md.controllers;
 

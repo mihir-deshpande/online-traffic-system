@@ -1,3 +1,7 @@
+/**
+ * @author  Mihir
+ * @description This class is used to handle all the database operations related to the Officer table.
+ */
 package com.humber.md.daos;
 
 import com.humber.md.models.Officer;
