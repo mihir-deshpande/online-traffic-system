@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Vehicle {
     @Id
     @Column(name = "vehicle_id", nullable = false, unique = true)
-    private String vehicleId;
+    private int vehicleId;
 
     @Column(name = "make", nullable = false)
     private String make;
@@ -31,7 +31,7 @@ public class Vehicle {
     private String ownerName;
 
     //Constructors
-    public Vehicle(String vehicleId, String make, String model, int year, String ownerName) {
+    public Vehicle(int vehicleId, String make, String model, int year, String ownerName) {
         this.vehicleId = vehicleId;
         this.make = make;
         this.model = model;
@@ -40,11 +40,12 @@ public class Vehicle {
     }
 
     public Vehicle() {
-        this("", "", "", 0, "");
+
     }
 
+
     //Getters and Setters
-    public String getVehicleId() {
+    public int getVehicleId() {
         return vehicleId;
     }
 
@@ -64,7 +65,7 @@ public class Vehicle {
         return ownerName;
     }
 
-    public void setVehicleId(String vehicleId) {
+    public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
     }
 

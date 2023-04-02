@@ -17,6 +17,7 @@ public class IncidentDaoImpl implements IncidentDao{
         private EntityManager entityManager;
 
         @Override
+        @Transactional
         public Incident save(Incident incident) {
             // Save incident to database and return incident
             entityManager.persist(incident);
@@ -25,7 +26,6 @@ public class IncidentDaoImpl implements IncidentDao{
 
         @Override
         @Transactional
-        // Get all incidents by officer
         public List<Incident> getIncidentsByOfficerId(Officer officer) {
             String hql = "FROM Incident WHERE officer = :officer ORDER BY id DESC";
             TypedQuery<Incident> query = entityManager.createQuery(hql, Incident.class);

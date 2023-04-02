@@ -18,20 +18,25 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Traffic System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/">Traffic System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto mt-2">
             <li class="nav-item">
-                <a class="nav-link" href="#">Create Incident</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/incident/incidents">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/incident/create">Create Incident</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/officer/logout">Logout</a>
+                <a class="nav-link"
+                   href="${pageContext.request.contextPath}/officer/logout">Logout</a>
             </li>
         </ul>
     </div>
@@ -41,8 +46,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="text-center mb-4">
-                <h5>Officer</h5>
-                <p>Name: ${loggedinOfficer.getOfficerName()}</p>
+                <h5>Welcome Officer ${loggedinOfficer.getOfficerName()}</h5>
                 <p>Branch: ${loggedinOfficer.getBranch()}</p>
             </div>
         </div>
@@ -50,7 +54,7 @@
     <div class="row">
         <div class="col-md-12">
             <div>
-                <h2 class="mb-4">Reported Incidents</h2>
+                <h2 class="mb-4">Incidents</h2>
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
