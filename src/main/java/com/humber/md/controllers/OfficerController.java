@@ -60,4 +60,12 @@ public class OfficerController {
         return "redirect:/officer/signin";
     }
 
+    // Logout officer
+    @GetMapping("/officer/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("loggedinOfficer");
+        return "redirect:/";
+    }
+
 }
