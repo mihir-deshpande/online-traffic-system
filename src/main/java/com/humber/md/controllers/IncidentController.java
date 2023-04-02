@@ -70,23 +70,29 @@ public class IncidentController {
         if(session.getAttribute("loggedinOfficer") != null) {
             Officer loggedInOfficer = (Officer) session.getAttribute("loggedinOfficer");
 
+
             // Get form fields
             int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
             int routeId = Integer.parseInt(request.getParameter("routeId"));
             String description = request.getParameter("description");
             String incidentDate = request.getParameter("date");
+            String incidentId = request.getParameter("incidentId");
+
 
             // Get vehicle and route by id
             Vehicle vehicle = vehicleDao.getVehicleById(vehicleId);
             Route route = routeDao.getRouteById(routeId);
 
-            Incident newIncident = new Incident();
+            Incident newIncident = (incidentId != null) ? incidentDao.getIncidentById(Integer.parseInt(incidentId)) : new Incident();
 
             newIncident.setVehicle(vehicle);
             newIncident.setRoute(route);
             newIncident.setDescription(description);
             newIncident.setIncidentDate(incidentDate);
             newIncident.setOfficer(loggedInOfficer);
+            if(incidentId != null){
+                newIncident.setIncidentId(Integer.parseInt(incidentId));
+            }
 
             incidentDao.save(newIncident);
 
@@ -106,7 +112,6 @@ public class IncidentController {
         return "redirect:/";
     }
 
-    /*
 
     @GetMapping("/incident/edit/{id}")
     public String editIncident(@PathVariable("id") int id, Model model, HttpServletRequest request) {
@@ -128,6 +133,5 @@ public class IncidentController {
         return "redirect:/";
     }
 
-     */
 
 }

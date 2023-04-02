@@ -14,4 +14,6 @@ public interface IncidentDao {
 
     void deleteById(int id);
 
+    Incident getIncidentById(int id);
+
 }

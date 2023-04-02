@@ -79,7 +79,7 @@
                             <td>${incident.getVehicle().getMake()} ${incident.getVehicle().getModel()} ${incident.getVehicle().getYear()}</td>
                             <td>${incident.getVehicle().getOwnerName()}</td>
                             <td>${incident.getDescription()}</td>
-                            <td><a href="${pageContext.request.contextPath}/edit-incident/${incident.getIncidentId()}">Edit</a></td>
+                            <td><a href="${pageContext.request.contextPath}/incident/edit/${incident.getIncidentId()}">Edit</a></td>
                             <td><a href="${pageContext.request.contextPath}/incident/delete/${incident.getIncidentId()}" onclick="return confirm('Are you sure you want to delete this incident?')">Delete</a></td>
                         </tr>
                     </c:forEach>

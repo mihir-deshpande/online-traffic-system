@@ -20,9 +20,23 @@ public class IncidentDaoImpl implements IncidentDao{
         @Transactional
         public Incident save(Incident incident) {
             // Save incident to database and return incident
-            entityManager.persist(incident);
+            if (incident.getIncidentId() == 0) {
+                // If the incident has no ID, it's a new entity, so persist it
+                entityManager.persist(incident);
+            } else {
+                // If the incident has an ID, find the existing entity first
+                Incident existingIncident = entityManager.find(Incident.class, incident.getIncidentId());
+                if (existingIncident != null) {
+                    // If the existing entity is found, update it
+                    entityManager.merge(incident);
+                } else {
+                    // If the existing entity is not found, persist the incident as a new entity
+                    entityManager.persist(incident);
+                }
+            }
             return incident;
         }
+
 
         @Override
         @Transactional
@@ -38,6 +52,13 @@ public class IncidentDaoImpl implements IncidentDao{
         public void deleteById(int id) {
             Incident incident = entityManager.find(Incident.class, id);
             entityManager.remove(incident);
+
+        }
+
+        @Override
+        @Transactional
+        public Incident getIncidentById(int id) {
+            return entityManager.find(Incident.class, id);
         }
 
 }
