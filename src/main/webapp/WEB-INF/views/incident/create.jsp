@@ -64,7 +64,10 @@
                     <select name="vehicleId" id="vehicleId"
                             class="form-control">
                         <c:forEach items="${vehicles}" var="vehicle">
-                            <option value="${vehicle.getVehicleId()}">${vehicle.getVehicleId()}  -  ${vehicle.getMake()} ${vehicle.getModel()} ${vehicle.getYear()}</option>
+                            <option value="${vehicle.getVehicleId()}">${vehicle.getVehicleId()}  -
+                                           ${vehicle.getMake()} ${vehicle.getModel()} ${vehicle.getYear()}
+                                           Owner: ${vehicle.getOwnerName()}
+                            </option>
                         </c:forEach>
                     </select>
                 </div>
