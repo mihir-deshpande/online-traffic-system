@@ -4,6 +4,8 @@ package com.humber.md.controllers;
 import com.humber.md.daos.IncidentDao;
 import com.humber.md.models.Incident;
 import com.humber.md.models.Officer;
+import com.humber.md.models.Route;
+import com.humber.md.models.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ public class IncidentController {
     private IncidentDao incidentDao;
 
 
+    // Display all incidents for particular officer
     @GetMapping("/incident/incidents")
     public String displayIncidents(Model model, HttpServletRequest request) {
 
@@ -36,4 +39,7 @@ public class IncidentController {
 
         return "redirect:/";
     }
+
+
+
 }

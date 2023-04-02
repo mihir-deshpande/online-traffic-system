@@ -29,4 +29,12 @@ public class OfficerDaoImpl implements OfficerDao {
         return officer;
     }
 
+    // Get and officer my username
+    @Override
+    public Officer getOfficerByUsername(String username) {
+        TypedQuery<Officer> query = entityManager.createQuery("from Officer where username = :username", Officer.class);
+        query.setParameter("username", username);
+        return query.getSingleResult();
+    }
+
 }

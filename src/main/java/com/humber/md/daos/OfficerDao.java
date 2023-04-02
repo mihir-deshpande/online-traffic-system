@@ -7,4 +7,5 @@ import com.humber.md.models.Officer;
 public interface OfficerDao {
     List<Officer> findAll();
     Officer save(Officer officer);
+    Officer getOfficerByUsername(String username);
 }

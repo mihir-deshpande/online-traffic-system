@@ -1,3 +1,7 @@
+/**
+ * @author  Mihir
+ * @description Controller to handel all the routes related to Officer
+ */
 package com.humber.md.controllers;
 
 import com.humber.md.daos.OfficerDao;
@@ -17,6 +21,7 @@ import java.util.List;
 @Controller
 public class OfficerController {
 
+    // Inject OfficerDao
     @Autowired
     private OfficerDao officerDao;
 
@@ -34,6 +39,7 @@ public class OfficerController {
         return "redirect:/officer/signin";
     }
 
+
     // Routes to SignIn Officer
     @GetMapping("/officer/signin")
     public String showSignIpForm(Model model) {
@@ -41,26 +47,20 @@ public class OfficerController {
         return "officer/signin";
     }
 
-
     @PostMapping("/officer/signin")
     public String handleSignInForm(Officer officer, HttpServletRequest request, Model model) {
-
-        // Get all officers
-        List<Officer> officers = officerDao.findAll();
-        Officer loggedInOfficer = new Officer();
-
-        // Check if officer exists
-        for (Officer o : officers) {
-            if (o.getUsername().equals(officer.getUsername()) && o.getPassword().equals(officer.getPassword())) {
-                loggedInOfficer = o;
+        // Get officer by username
+        Officer officerByUsername = officerDao.getOfficerByUsername(officer.getUsername());
+        if(officerByUsername != null) {
+            if(officerByUsername.getPassword().equals(officer.getPassword())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("loggedinOfficer", loggedInOfficer);
-                return "redirect:/incident/incidents";
+                session.setAttribute("loggedinOfficer", officerByUsername);
+                return "redirect:/incident/incidents"; // Redirect to incidents
             }
         }
-        // If officer does not exist
-        return "redirect:/officer/signin";
+        return "redirect:/officer/signin"; // Redirect to signin if officer not found
     }
+
 
     // Logout officer
     @GetMapping("/officer/logout")
