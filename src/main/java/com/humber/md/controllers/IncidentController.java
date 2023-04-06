@@ -8,13 +8,13 @@ import com.humber.md.models.Incident;
 import com.humber.md.models.Officer;
 import com.humber.md.models.Route;
 import com.humber.md.models.Vehicle;
+import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
 import java.util.List;
 
 @Controller

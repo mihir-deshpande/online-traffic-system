@@ -1,6 +1,7 @@
 package com.humber.md.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 /**
  * @author Mihir
